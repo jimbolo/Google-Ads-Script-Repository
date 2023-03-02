@@ -1,5 +1,24 @@
+/**
+ *
+ * Search Query Mining
+ *
+ * This script calculates the contribution of each word or phrase found in the 
+ * search query report and outputs a report into a Google Doc spreadsheet.
+ *
+ * Version: 1.0
+ * Google AdWords Script maintained on brainlabsdigital.com
+ * 
+ * Updated by Jimbolo 02/15/2023
+ * Version: J_0.1
+ * Filter Campaings by Label Name
+ *
+ *
+ **/
+
+
+
+
 function main() {
-  //////////////////////////////////////////////////////////////////////////////
   // Options
   
   var startDate = "2022-01-01";
