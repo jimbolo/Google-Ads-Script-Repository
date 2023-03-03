@@ -9,7 +9,7 @@
  * Google AdWords Script maintained on brainlabsdigital.com
  * 
  * Updated by Cem Avsar 02/15/2023
- * Version: J_0.2
+ * Version: J.0.2
  * Filter Campaings by Label Name
  *
  *
