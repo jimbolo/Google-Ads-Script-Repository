@@ -8,8 +8,8 @@
  * Version: 1.0
  * Google AdWords Script maintained on brainlabsdigital.com
  * 
- * Updated by Jimbolo 02/15/2023
- * Version: J_0.1
+ * Updated by Cem Avsar 02/15/2023
+ * Version: J_0.2
  * Filter Campaings by Label Name
  *
  *
@@ -52,13 +52,13 @@ function main() {
 
   var spreadsheetUrl = "https://docs.google.com/spreadsheets/d/00000000000000000000000000000000000000000/";
   
-  // Added by Jimbolo 02/15/2023
-  var campaignLabelName = "Query Mining";
+  // Added by Cem Avsar 02/15/2023
+  var campaignLabelName = "ngram";
   
   
   // The URL of the Google Doc the results will be put into.
   
-  var minNGramLength = 2;
+  var minNGramLength = 1;
   var maxNGramLength = 2;
   // The word length of phrases to be checked.
   // For example if minNGramLength is 1 and maxNGramLength is 3, 
@@ -106,23 +106,21 @@ function main() {
     whereStatements += "AND CampaignStatus IN ['ENABLED','PAUSED'] ";
   }
   
-  // // Added by Jimbolo 02/15/2023
+  // Added by Cem Avsar 02/15/2023
+  var whereLabelNames = "";
+  if (campaignLabelName != "") {
   // var label = AdsApp.labels().withCondition("label.name = 'Query Mining'").get().next();
   var label = AdsApp.labels().withCondition("Name = '"+ campaignLabelName +"'").get().next();
-  
+    whereLabelNames +=     "AND Labels CONTAINS_ANY [" + label.getId() + "] ";
+    Logger.log("Labes Names: '" + label.getId() + "'");
+  }
   
   
   
   var campaignReport = AdWordsApp.report(
     "SELECT CampaignName, CampaignId " +
     "FROM   CAMPAIGN_PERFORMANCE_REPORT " +
-    "WHERE CampaignName CONTAINS_IGNORE_CASE '" + campaignNameContains + "' " +
-    
-    // Added by Jimbolo 02/15/2023
-    "AND Labels CONTAINS_ANY " +
-    "[" + label.getId() + "] " +
-    
-    
+    "WHERE CampaignName CONTAINS_IGNORE_CASE '" + campaignNameContains + "' " + whereLabelNames +
     "AND Impressions > 0 " + whereStatements +
     "DURING " + dateRange
   );
