@@ -1,6 +1,6 @@
 /**
  *
- * Search Query Mining
+ * Google Ads Search Query Mining by label
  *
  * This script calculates the contribution of each word or phrase found in the 
  * search query report and outputs a report into a Google Doc spreadsheet.
